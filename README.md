@@ -9,7 +9,7 @@ To set up these dotfiles on your machine, follow these steps:
 1. **Clone the repository:**
 
    ```bash
-   git clone <URL_OF_YOUR_REPOSITORY> ~/dotfiles
+   git clone https://github.com/lucadibello/dotfiles.git ~/dotfiles
    ```
 
 2. **Navigate to the dotfiles directory:**
