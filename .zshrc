@@ -14,10 +14,10 @@ HIST_STAMPS="mm/dd/yyyy"
 
 # Which plugins would you like to load?
 plugins=(
-	git
+  git
   zsh-autosuggestions
-	zsh-syntax-highlighting
-	you-should-use
+  zsh-syntax-highlighting
+  you-should-use
   zsh-vi-mode
 )
 
