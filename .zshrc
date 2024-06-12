@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-# Path to your oh-my-zsh installation.
+# Path to the oh-my-zsh installation folder
 export ZSH="$HOME/.oh-my-zsh"
 
 # auto-update behavior
