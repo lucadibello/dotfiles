@@ -86,13 +86,17 @@ echo "🏁 Done. Your system is ready for setup."
 
 echo "📦 Moving dotfiles to the respective directories..."
 
-# 1. zshrc
+# 1. ZSH
 echo "* Setting up zshrc..."
 create_symlink "$(pwd)/.zshrc" ~/.zshrc
 
-# 2. tmux.conf
+# 2. TMUX
 echo "* Setting up tmux.conf..."
 create_symlink "$(pwd)/.tmux.conf" ~/.tmux.conf
+
+# 3. Kitty
+echo "* Setting up kitty..."
+create_symlink "$(pwd)/kitty.conf" ~/.config/kitty/kitty.conf
 
 # Execute all scrips in the post-scripts directory
 echo "🏃 Running post-scripts..."
