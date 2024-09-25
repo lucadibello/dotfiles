@@ -1,8 +1,8 @@
 #!/bin/zsh
 
 # Useful paths
-PRE_SCRIPTS_DIR="./scripts/pre"
-POST_SCRIPTS_DIR="./scripts/post"
+PRE_SCRIPTS_DIR="./scripts/install/pre"
+POST_SCRIPTS_DIR="./scripts/install/post"
 
 # Enable null_glob to prevent errors when no files are found
 setopt null_glob
