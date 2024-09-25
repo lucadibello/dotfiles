@@ -31,6 +31,9 @@ else
   export EDITOR='nvim'
 fi
 
+# Define aliases
+alias mux='tmuxinator'
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
