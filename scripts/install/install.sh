@@ -99,6 +99,10 @@ echo "* Setting up kitty..."
 create_symlink "$(pwd)/kitty.conf" ~/.config/kitty/kitty.conf
 create_symlink "$(pwd)/scripts/kitty/tmux-attach.sh" ~/.config/kitty/tmux-attach.sh
 
+# 4. Zathura
+echo "* Setting up zathurarc..."
+create_symlink "$(pwd)/zathurarc" ~/.config/zathura/zathurarc
+
 # Execute all scrips in the post-scripts directory
 echo "🏃 Running post-scripts..."
 # Check if the directory contains any files
