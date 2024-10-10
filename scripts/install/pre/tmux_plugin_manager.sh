@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # Check if tmux plugin manager is already installed. If not, install it.
 INSTALL_DIR=~/.tmux/plugins/tpm

@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # Useful paths
 PRE_SCRIPTS_DIR="./scripts/install/pre"
