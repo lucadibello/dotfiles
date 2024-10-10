@@ -49,8 +49,13 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# Update PATH with GOPATH executable
+# Update PATH with some additional tools 
+
+# 1. Golang
 export PATH="$PATH:$(go env GOPATH)/bin"
+
+# 2. OpenJDK
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # Start oh-my-zsh
 source $ZSH/oh-my-zsh.sh
