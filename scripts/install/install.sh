@@ -104,8 +104,9 @@ echo "* Setting up zathurarc..."
 create_symlink "$(pwd)/zathurarc" ~/.config/zathura/zathurarc
 
 # 5. Yabai
-echo "* Setting up yabairc..."
-create_symlink "$(pwd)/.yabairc" ~/.yabairc
+# FIXME: Uncomment after setting up yabai
+# echo "* Setting up yabairc..."
+# create_symlink "$(pwd)/.yabairc" ~/.yabairc
 
 # Execute all scrips in the post-scripts directory
 echo "🏃 Running post-scripts..."
