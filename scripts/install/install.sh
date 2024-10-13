@@ -19,63 +19,63 @@ run_script() {
 
 # Function to create a symbolic link with a prompt if the file already exists
 create_symlink() {
-	local source_file=$1
-	local target_file=$2
+  local source_file=$1
+  local target_file=$2
 
-	if [ -L "$target_file" ]; then
-		# If the target is a symbolic link, remove it
-		echo -e "\t$target_file is a symbolic link. Removing it."
-		rm "$target_file"
-	fi
-	if [ -e "$target_file" ]; then
-		# If the target exists and is not a symbolic link, prompt the user
-		echo -e "\t$target_file already exists."
-		while true; do
-			echo -en "\tDo you want to replace it? (y/n): "
-			read yn
-			case $yn in
-			[Yy]*)
-				rm -f "$target_file"
-				if [ $? -ne 0 ]; then
-					echo -e "\tFailed to remove $target_file. Skipping." >&2
-					return 1 # Return error code if unable to remove the file
-				fi
-				ln -s "$source_file" "$target_file"
-				if [ $? -eq 0 ]; then
-					echo -e "\t$target_file has been replaced."
-				else
-					echo -e "\tFailed to create symlink for $target_file." >&2
-					return 1 # Return error code if symlink creation fails
-				fi
-				break
-				;;
-			[Nn]*)
-				echo -e "\tSkipped $target_file."
-				return 0
-				;;
-			*)
-				echo -e "\tPlease answer yes or no."
-				;;
-			esac
-		done
-	else
-		ln -s "$source_file" "$target_file"
-		if [ $? -eq 0 ]; then
-			echo -e "\t$target_file has been created."
-		else
-			echo -e "\tFailed to create symlink for $target_file." >&2
-			return 1 # Return error code if symlink creation fails
-		fi
-	fi
-	return 0 # Successful execution
+  if [ -L "$target_file" ]; then
+    # If the target is a symbolic link, remove it
+    echo -e "\t$target_file is a symbolic link. Removing it."
+    rm "$target_file"
+  fi
+  if [ -e "$target_file" ]; then
+    # If the target exists and is not a symbolic link, prompt the user
+    echo -e "\t$target_file already exists."
+    while true; do
+      echo -en "\tDo you want to replace it? (y/n): "
+      read yn
+      case $yn in
+      [Yy]*)
+        rm -f "$target_file"
+        if [ $? -ne 0 ]; then
+          echo -e "\tFailed to remove $target_file. Skipping." >&2
+          return 1 # Return error code if unable to remove the file
+        fi
+        ln -s "$source_file" "$target_file"
+        if [ $? -eq 0 ]; then
+          echo -e "\t$target_file has been replaced."
+        else
+          echo -e "\tFailed to create symlink for $target_file." >&2
+          return 1 # Return error code if symlink creation fails
+        fi
+        break
+        ;;
+      [Nn]*)
+        echo -e "\tSkipped $target_file."
+        return 0
+        ;;
+      *)
+        echo -e "\tPlease answer yes or no."
+        ;;
+      esac
+    done
+  else
+    ln -s "$source_file" "$target_file"
+    if [ $? -eq 0 ]; then
+      echo -e "\t$target_file has been created."
+    else
+      echo -e "\tFailed to create symlink for $target_file." >&2
+      return 1 # Return error code if symlink creation fails
+    fi
+  fi
+  return 0 # Successful execution
 }
 # Execute all scrips in the pre-scripts directory
 echo "🏃 Running pre-scripts..."
 
 # Check if the directory contains any files
 if [ -z "$(ls -A $PRE_SCRIPTS_DIR 2>/dev/null)" ]; then
-	echo "\tNo post-scripts found in $POST_SCRIPTS_DIR."
-	exit 0
+  echo "\tNo post-scripts found in $POST_SCRIPTS_DIR."
+  exit 0
 fi
 
 for script in $PRE_SCRIPTS_DIR/*; do
@@ -103,16 +103,20 @@ create_symlink "$(pwd)/scripts/kitty/tmux-attach.sh" ~/.config/kitty/tmux-attach
 echo "* Setting up zathurarc..."
 create_symlink "$(pwd)/zathurarc" ~/.config/zathura/zathurarc
 
+# 5. Yabai
+echo "* Setting up yabairc..."
+create_symlink "$(pwd)/.yabairc" ~/.yabairc
+
 # Execute all scrips in the post-scripts directory
 echo "🏃 Running post-scripts..."
 # Check if the directory contains any files
 if [ -z "$(ls -A $POST_SCRIPTS_DIR 2>/dev/null)" ]; then
-	echo "\tNo post-scripts found in $POST_SCRIPTS_DIR."
+  echo "\tNo post-scripts found in $POST_SCRIPTS_DIR."
 else
-	# Loop over the scripts if files are present
-	for script in $POST_SCRIPTS_DIR/*; do
+  # Loop over the scripts if files are present
+  for script in $POST_SCRIPTS_DIR/*; do
     run_script $script
-	done
+  done
 fi
 
 echo "🏁 Your system is ready for use."
