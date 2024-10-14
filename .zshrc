@@ -57,11 +57,13 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 # 2. OpenJDK
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
-# Start oh-my-zsh
-source $ZSH/oh-my-zsh.sh
+# Define useful constants
+export CXX="clang++"
 
 ## Start additional tools
 
+# Start oh-my-zsh
+source $ZSH/oh-my-zsh.sh
 # Start spaceship
 eval "$(starship init zsh)"
 # Start Zoxide
