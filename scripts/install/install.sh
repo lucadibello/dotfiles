@@ -78,7 +78,7 @@ if [ -z "$(ls -A $PRE_SCRIPTS_DIR 2>/dev/null)" ]; then
   exit 0
 fi
 
-for script in $PRE_SCRIPTS_DIR/*; do
+for script in $PRE_SCRIPTS_DIR/*.sh; do
   run_script $script
 done
 
@@ -123,4 +123,4 @@ fi
 echo "🏁 Your system is ready for use."
 
 # Reset null_glob
-unsetopt null_glob
+set no_null_glob
