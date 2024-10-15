@@ -62,6 +62,7 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
 # Define useful constants
 export CXX="clang++"
+export CC="clang"
 
 ## Start additional tools
 
