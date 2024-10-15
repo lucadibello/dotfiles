@@ -49,13 +49,16 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# Update PATH with some additional tools 
+# Update PATH with some additional tools
 
 # 1. Golang
 export PATH="$PATH:$(go env GOPATH)/bin"
 
 # 2. OpenJDK
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+# 3. LLVM
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
 # Define useful constants
 export CXX="clang++"
