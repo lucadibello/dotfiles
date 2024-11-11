@@ -88,7 +88,7 @@ echo "📦 Moving dotfiles to the respective directories..."
 
 # 1. Fish
 echo "* Setting up fish..."
-create_symlink "$(pwd)/.zshrc" ~/.config/fish/config.fish
+create_symlink "$(pwd)/config.fish" ~/.config/fish/config.fish
 
 # 2. TMUX
 echo "* Setting up tmux..."
