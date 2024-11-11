@@ -1,7 +1,12 @@
+# Add homebrew to path
+set -gx PATH /opt/homebrew/bin $PATH
+
 # Additional settings for Fish
-set -g fish_key_bindings fish_vi_key_bindings # equivalent to zsh-vi-mode
 set -U fish_autosuggestion_enabled
 set -U fish_hybrid_mode # Vi-style keybindings
+
+# Use vi keybindings in fish
+fish_vi_key_bindings
 
 # Aliases
 alias mux="tmuxinator"
