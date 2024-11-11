@@ -1,5 +1,4 @@
-# Add homebrew to path
-set -gx PATH /opt/homebrew/bin $PATH
+# add important paths to fish's PATH env
 
 # Additional settings for Fish
 set -U fish_autosuggestion_enabled
