@@ -6,7 +6,6 @@ set -U fish_hybrid_mode # Vi-style keybindings
 # Aliases
 alias mux="tmuxinator"
 
-
 # Editor setup
 if test -n "$SSH_CONNECTION"
     set -x EDITOR vim
