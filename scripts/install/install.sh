@@ -86,12 +86,12 @@ echo "🏁 Done. Your system is ready for setup."
 
 echo "📦 Moving dotfiles to the respective directories..."
 
-# 1. ZSH
-echo "* Setting up zshrc..."
-create_symlink "$(pwd)/.zshrc" ~/.zshrc
+# 1. Fish
+echo "* Setting up fish..."
+create_symlink "$(pwd)/.zshrc" ~/.config/fish/config.fish
 
 # 2. TMUX
-echo "* Setting up tmux.conf..."
+echo "* Setting up tmux..."
 create_symlink "$(pwd)/.tmux.conf" ~/.tmux.conf
 
 # 3. Kitty
@@ -100,13 +100,8 @@ create_symlink "$(pwd)/kitty.conf" ~/.config/kitty/kitty.conf
 create_symlink "$(pwd)/scripts/kitty/tmux-attach.sh" ~/.config/kitty/tmux-attach.sh
 
 # 4. Zathura
-echo "* Setting up zathurarc..."
+echo "* Setting up zathura..."
 create_symlink "$(pwd)/zathurarc" ~/.config/zathura/zathurarc
-
-# 5. Yabai
-# FIXME: Uncomment after setting up yabai
-# echo "* Setting up yabairc..."
-# create_symlink "$(pwd)/.yabairc" ~/.yabairc
 
 # Execute all scrips in the post-scripts directory
 echo "🏃 Running post-scripts..."
