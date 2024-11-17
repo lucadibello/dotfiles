@@ -14,5 +14,5 @@ fish -c "fisher install franciscolourenco/done"
 
 # Install fzf
 fish -c "fisher install PatrickF1/fzf.fish"
-# (Dependency: fd)
-brew install fd
+# (Dependencies: fd, bat)
+brew install fd bat
