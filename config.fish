@@ -51,7 +51,7 @@ set -x CXX clang++
 set -x CC clang
 
 # Start Starship prompt
-# starship init fish | source
+starship init fish | source
 
 # Zoxide setup (install with fisher: fisher install ajeetdsouza/zoxide)
 zoxide init fish | source
