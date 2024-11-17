@@ -8,3 +8,11 @@ fish -c "tide configure --auto --style=Lean --prompt_colors='16 colors' --show_t
 
 # Install autopair
 fish -c "fisher install jorgebucaran/autopair.fish"
+
+# Install done
+fish -c "fisher install franciscolourenco/done"
+
+# Install fzf
+fish -c "fisher install PatrickF1/fzf.fish"
+# (Dependency: fd)
+brew install fd

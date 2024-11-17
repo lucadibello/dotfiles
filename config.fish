@@ -4,6 +4,10 @@
 set -U fish_autosuggestion_enabled
 set -U fish_hybrid_mode # Vi-style keybindings
 
+# Settings for Done package
+set -U __done_min_cmd_duration 5000 # Send notification if command takes more than 5 seconds
+set -U __done_notify_sound 1 # Play notification sound
+
 # Use vi keybindings in fish
 fish_vi_key_bindings
 
@@ -24,10 +28,14 @@ set -x SHELL /opt/homebrew/bin/fish
 set -x LANG en_US.UTF-8
 
 # Conda initialization
-if test -f /opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.fish
-    source /opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.fish
+if test -f /opt/homebrew/Caskroom/miniconda/base/bin/conda
+    /opt/homebrew/Caskroom/miniconda/base/bin/conda "shell.fish" hook $argv | source
 else
-    set -x PATH /opt/homebrew/Caskroom/miniconda/base/bin $PATH
+    if test -f "/opt/homebrew/Caskroom/miniconda/base/etc/fish/conf.d/conda.fish"
+        source "/opt/homebrew/Caskroom/miniconda/base/etc/fish/conf.d/conda.fish"
+    else
+        set -x PATH /opt/homebrew/Caskroom/miniconda/base/bin $PATH
+    end
 end
 
 # PATH setup
