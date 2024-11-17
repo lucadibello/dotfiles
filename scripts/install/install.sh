@@ -103,6 +103,10 @@ create_symlink "$(pwd)/scripts/kitty/tmux-attach.sh" ~/.config/kitty/tmux-attach
 echo "* Setting up zathura..."
 create_symlink "$(pwd)/zathurarc" ~/.config/zathura/zathurarc
 
+# 5. Starship
+echo "* Setting up starship..."
+create_symlink "$(pwd)/starship.toml" ~/.config/starship.toml
+
 # Execute all scrips in the post-scripts directory
 echo "🏃 Running post-scripts..."
 # Check if the directory contains any files
