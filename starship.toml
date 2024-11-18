@@ -1,19 +1,36 @@
 add_newline = false
 # A minimal left prompt
-format = """$directory$character"""
+format = """$username$directory$character"""
 palette = "catppuccin_mocha"
-# move git_branch to the right
-right_format = """$git_branch"""
-command_timeout = 1000
 
-[directory.substitutions]
-'~/tests/starship-custom' = 'work-project'
+# Move important information to the right
+right_format = """
+$git_branch \
+$git_state\
+$git_status\
+$cmd_duration
+"""
+command_timeout = 1000
 
 [git_branch]
 format =  '[$symbol$branch(:$remote_branch)]($style)'
 
-[docker_context]
+[directory]
+style = "blue"
+
+[username]
+style_user = 'green dimmed'
+style_root = 'red bold'
+format = '[$user]($style)@'
 disabled = false
+show_always = true
+
+[cmd_duration]
+min_time = 1000
+show_milliseconds = false
+disabled = false
+format = "($duration($style))"
+style = "bold italic #87A752"
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
