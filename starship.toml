@@ -17,13 +17,16 @@ format =  '[$symbol$branch(:$remote_branch)]($style)'
 
 [directory]
 style = "blue"
+truncation_length = 2
+truncate_to_repo = true
+truncation_symbol = "…"
 
 [username]
-style_user = 'green dimmed'
+style_user = 'yellow'
 style_root = 'red bold'
 format = '[$user]($style)@'
 disabled = false
-show_always = true
+show_always = false
 
 [cmd_duration]
 min_time = 1000
