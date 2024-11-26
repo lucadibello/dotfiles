@@ -5,15 +5,12 @@ palette = "catppuccin_mocha"
 
 # Move important information to the right
 right_format = """
-$git_branch \
-$git_state\
-$git_status\
-$cmd_duration
+$all
 """
 command_timeout = 1000
 
 [git_branch]
-format =  '[$symbol$branch(:$remote_branch)]($style)'
+format = '[$symbol$branch(:$remote_branch)]($style)'
 
 [directory]
 style = "blue"
