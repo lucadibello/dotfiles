@@ -89,7 +89,9 @@ create_symlink "$(pwd)/config.fish" ~/.config/fish/config.fish
 
 # 2. TMUX
 echo "* Setting up tmux..."
+mkdir -p ~/.config/tmux
 create_symlink "$(pwd)/.tmux.conf" ~/.tmux.conf
+cp "$(pwd)/.tmux.conf.local" ~/.tmux.conf.local
 
 # 3. Kitty
 echo "* Setting up kitty..."
