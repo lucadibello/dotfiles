@@ -1,11 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Useful paths
 PRE_SCRIPTS_DIR="./scripts/install/pre"
 POST_SCRIPTS_DIR="./scripts/install/post"
-
-# Enable null_glob to prevent errors when no files are found
-setopt null_glob
 
 run_script() {
   local script=$1
@@ -120,6 +117,3 @@ else
 fi
 
 echo "🏁 Your system is ready for use."
-
-# Reset null_glob
-set no_null_glob

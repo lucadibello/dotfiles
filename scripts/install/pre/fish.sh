@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Check if fish is installed using Homebrew
 if ! command -v fish &>/dev/null; then

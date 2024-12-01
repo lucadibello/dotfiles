@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Check if tmux plugin manager is already installed. If not, install it.
 INSTALL_DIR=~/.tmux/plugins/tpm
 if [ -d "$INSTALL_DIR" ]; then
-    echo "Tmux Plugin Manager is already installed."
-    exit 0
+  echo "Tmux Plugin Manager is already installed."
+  exit 0
 fi
 
 # Install Tmux Plugin Manager from source
@@ -19,4 +19,3 @@ else
   echo "Failed to install Tmux Plugin Manager." >&2
   exit 1
 fi
-

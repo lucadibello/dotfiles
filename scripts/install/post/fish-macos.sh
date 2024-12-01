@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Check if the default shell is already Fish
 if [ "$SHELL" = "/opt/homebrew/bin/fish" ]; then

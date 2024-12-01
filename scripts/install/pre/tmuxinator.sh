@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Check if tmuxinator is installed using Homebrew
 if ! command -v tmuxinator &>/dev/null; then
