@@ -13,5 +13,6 @@ if ! grep -q "^/opt/homebrew/bin/fish$" /etc/shells; then
   echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
 fi
 
+export SHELL=/opt/homebrew/bin/fish
 chsh -s /opt/homebrew/bin/fish
 echo "Fish has been set as the default shell. Restart your terminal for the change to take effect."
