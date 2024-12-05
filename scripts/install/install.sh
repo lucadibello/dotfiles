@@ -7,7 +7,7 @@ POST_SCRIPTS_DIR="./scripts/install/post"
 run_script() {
   local script=$1
   echo "Running $script..."
-  zsh $script
+  bash "$script"
   if [ $? -ne 0 ]; then
     echo "❌ $script failed. Check the logs for more information."
     exit 1
@@ -18,6 +18,9 @@ run_script() {
 create_symlink() {
   local source_file=$1
   local target_file=$2
+
+  # Create the directory if it does not exist
+  mkdir -p "$(dirname "$target_file")"
 
   if [ -L "$target_file" ]; then
     # If the target is a symbolic link, remove it
@@ -71,12 +74,12 @@ echo "🏃 Running pre-scripts..."
 
 # Check if the directory contains any files
 if [ -z "$(ls -A $PRE_SCRIPTS_DIR 2>/dev/null)" ]; then
-  echo "\tNo post-scripts found in $POST_SCRIPTS_DIR."
+  printf "\n No pre-scripts found in %s." $PRE_SCRIPTS_DIR
   exit 0
 fi
 
-for script in $PRE_SCRIPTS_DIR/*.sh; do
-  run_script $script
+for script in "$PRE_SCRIPTS_DIR"/*.sh; do
+  run_script "$script"
 done
 
 echo "🏁 Done. Your system is ready for setup."
@@ -106,15 +109,20 @@ create_symlink "$(pwd)/zathurarc" ~/.config/zathura/zathurarc
 echo "* Setting up starship..."
 create_symlink "$(pwd)/starship.toml" ~/.config/starship.toml
 
+# 6. AeroSpace
+echo "* Setting up aero-space..."
+create_symlink "$(pwd)/.aerospace.toml" ~/.aerospace.toml
+create_symlink "$(pwd)/bordersrc" ~/.config/borders/bordersrc
+
 # Execute all scrips in the post-scripts directory
 echo "🏃 Running post-scripts..."
 # Check if the directory contains any files
 if [ -z "$(ls -A $POST_SCRIPTS_DIR 2>/dev/null)" ]; then
-  echo "\tNo post-scripts found in $POST_SCRIPTS_DIR."
+  printf "\n No post-scripts found in %s." $POST_SCRIPTS_DIR
 else
   # Loop over the scripts if files are present
-  for script in $POST_SCRIPTS_DIR/*; do
-    run_script $script
+  for script in "$POST_SCRIPTS_DIR"/*; do
+    run_script "$script"
   done
 fi
 
