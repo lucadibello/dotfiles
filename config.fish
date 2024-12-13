@@ -49,3 +49,5 @@ starship init fish | source
 
 # Zoxide setup (install with fisher: fisher install ajeetdsouza/zoxide)
 zoxide init fish | source
+
+fish_add_path -a /Users/lucadibello/.foundry/bin
