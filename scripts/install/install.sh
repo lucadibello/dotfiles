@@ -114,6 +114,10 @@ echo "* Setting up aero-space..."
 create_symlink "$(pwd)/.aerospace.toml" ~/.aerospace.toml
 create_symlink "$(pwd)/bordersrc" ~/.config/borders/bordersrc
 
+# 7. Ghostty
+echo "* Setting up Ghostty..."
+create_symlink "$(pwd)/ghostty.config" ~/.config/ghostty/config
+
 # Execute all scrips in the post-scripts directory
 echo "🏃 Running post-scripts..."
 # Check if the directory contains any files
