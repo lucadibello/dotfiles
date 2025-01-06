@@ -29,7 +29,7 @@ set -x LANG en_US.UTF-8
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-status is-interactive && eval /opt/homebrew/Caskroom/miniconda/base/bin/conda "shell.fish" hook $argv | source
+eval /opt/homebrew/Caskroom/miniconda/base/bin/conda "shell.fish" hook $argv | source
 # <<< conda initialize <<<
 
 # PATH setup
