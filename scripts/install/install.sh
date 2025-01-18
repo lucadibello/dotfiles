@@ -94,7 +94,6 @@ create_symlink "$(pwd)/config.fish" ~/.config/fish/config.fish
 echo "* Setting up tmux..."
 mkdir -p ~/.config/tmux
 create_symlink "$(pwd)/.tmux.conf" ~/.tmux.conf
-create_symlink "$(pwd)/.tmux.conf.local" ~/.tmux.conf.local
 
 # 3. Kitty
 echo "* Setting up kitty..."
@@ -112,9 +111,12 @@ create_symlink "$(pwd)/starship.toml" ~/.config/starship.toml
 # 6. AeroSpace
 echo "* Setting up aero-space..."
 create_symlink "$(pwd)/.aerospace.toml" ~/.aerospace.toml
+
+# 7. AeroSpace
+echo "* Setting up bordersrc..."
 create_symlink "$(pwd)/bordersrc" ~/.config/borders/bordersrc
 
-# 7. Ghostty
+# 8. Ghostty
 echo "* Setting up Ghostty..."
 create_symlink "$(pwd)/ghostty.config" ~/.config/ghostty/config
 
