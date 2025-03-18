@@ -5,7 +5,7 @@ PRE_SCRIPTS_DIR="./scripts/install/pre"
 POST_SCRIPTS_DIR="./scripts/install/post"
 
 run_script() {
-  local script=$1
+  local script="$1"
   echo "Running $script..."
   bash "$script"
   if [ $? -ne 0 ]; then
@@ -16,8 +16,8 @@ run_script() {
 
 # Function to create a symbolic link with a prompt if the file already exists
 create_symlink() {
-  local source_file=$1
-  local target_file=$2
+  local source_file="$1"
+  local target_file="$2"
 
   # Create the directory if it does not exist
   mkdir -p "$(dirname "$target_file")"
@@ -27,25 +27,26 @@ create_symlink() {
     echo -e "\t$target_file is a symbolic link. Removing it."
     rm "$target_file"
   fi
+
   if [ -e "$target_file" ]; then
     # If the target exists and is not a symbolic link, prompt the user
     echo -e "\t$target_file already exists."
     while true; do
       echo -en "\tDo you want to replace it? (y/n): "
-      read yn
+      read -r yn
       case $yn in
       [Yy]*)
         rm -f "$target_file"
         if [ $? -ne 0 ]; then
           echo -e "\tFailed to remove $target_file. Skipping." >&2
-          return 1 # Return error code if unable to remove the file
+          return 1
         fi
         ln -s "$source_file" "$target_file"
         if [ $? -eq 0 ]; then
           echo -e "\t$target_file has been replaced."
         else
           echo -e "\tFailed to create symlink for $target_file." >&2
-          return 1 # Return error code if symlink creation fails
+          return 1
         fi
         break
         ;;
@@ -64,72 +65,67 @@ create_symlink() {
       echo -e "\t$target_file has been created."
     else
       echo -e "\tFailed to create symlink for $target_file." >&2
-      return 1 # Return error code if symlink creation fails
+      return 1
     fi
   fi
-  return 0 # Successful execution
+  return 0
 }
-# Execute all scrips in the pre-scripts directory
-echo "🏃 Running pre-scripts..."
 
-# Check if the directory contains any files
-if [ -z "$(ls -A $PRE_SCRIPTS_DIR 2>/dev/null)" ]; then
-  printf "\n No pre-scripts found in %s." $PRE_SCRIPTS_DIR
-  exit 0
+# Execute all scripts in the pre-scripts directory
+echo "🏃 Running pre-scripts..."
+if [ -d "$PRE_SCRIPTS_DIR" ] && [ -n "$(ls -A "$PRE_SCRIPTS_DIR" 2>/dev/null)" ]; then
+  for script in "$PRE_SCRIPTS_DIR"/*.sh; do
+    run_script "$script"
+  done
+else
+  echo "No pre-scripts found in ${PRE_SCRIPTS_DIR}. Skipping pre-scripts."
 fi
 
-for script in "$PRE_SCRIPTS_DIR"/*.sh; do
-  run_script "$script"
-done
-
 echo "🏁 Done. Your system is ready for setup."
-
 echo "📦 Moving dotfiles to the respective directories..."
 
 # 1. Fish
 echo "* Setting up fish..."
-create_symlink "$(pwd)/config.fish" ~/.config/fish/config.fish
+create_symlink "$(pwd)/config.fish" "$HOME/.config/fish/config.fish"
 
 # 2. TMUX
 echo "* Setting up tmux..."
-mkdir -p ~/.config/tmux
-create_symlink "$(pwd)/.tmux.conf" ~/.tmux.conf
+mkdir -p "$HOME/.config/tmux"
+create_symlink "$(pwd)/.tmux.conf" "$HOME/.tmux.conf"
 
 # 3. Kitty
 echo "* Setting up kitty..."
-create_symlink "$(pwd)/kitty.conf" ~/.config/kitty/kitty.conf
-create_symlink "$(pwd)/scripts/tmux/tmux-attach.sh" ~/.config/kitty/tmux-attach.sh
+create_symlink "$(pwd)/kitty.conf" "$HOME/.config/kitty/kitty.conf"
+create_symlink "$(pwd)/scripts/tmux/tmux-attach.sh" "$HOME/.config/kitty/tmux-attach.sh"
 
 # 4. Zathura
 echo "* Setting up zathura..."
-create_symlink "$(pwd)/zathurarc" ~/.config/zathura/zathurarc
+create_symlink "$(pwd)/zathurarc" "$HOME/.config/zathura/zathurarc"
 
 # 5. Starship
 echo "* Setting up starship..."
-create_symlink "$(pwd)/starship.toml" ~/.config/starship.toml
+create_symlink "$(pwd)/starship.toml" "$HOME/.config/starship.toml"
 
 # 6. AeroSpace
 echo "* Setting up aero-space..."
-create_symlink "$(pwd)/.aerospace.toml" ~/.aerospace.toml
+create_symlink "$(pwd)/.aerospace.toml" "$HOME/.aerospace.toml"
 
-# 7. AeroSpace
+# 7. Bordersrc
 echo "* Setting up bordersrc..."
-create_symlink "$(pwd)/bordersrc" ~/.config/borders/bordersrc
+create_symlink "$(pwd)/bordersrc" "$HOME/.config/borders/bordersrc"
 
 # 8. Ghostty
 echo "* Setting up Ghostty..."
-create_symlink "$(pwd)/ghostty.config" ~/.config/ghostty/config
+create_symlink "$(pwd)/ghostty.config" "$HOME/.config/ghostty/config"
 
-# Execute all scrips in the post-scripts directory
+# Execute all scripts in the post-scripts directory
 echo "🏃 Running post-scripts..."
-# Check if the directory contains any files
-if [ -z "$(ls -A $POST_SCRIPTS_DIR 2>/dev/null)" ]; then
-  printf "\n No post-scripts found in %s." $POST_SCRIPTS_DIR
-else
-  # Loop over the scripts if files are present
+if [ -d "$POST_SCRIPTS_DIR" ] && [ -n "$(ls -A "$POST_SCRIPTS_DIR" 2>/dev/null)" ]; then
   for script in "$POST_SCRIPTS_DIR"/*; do
     run_script "$script"
   done
+else
+  echo "No post-scripts found in ${POST_SCRIPTS_DIR}. Skipping post-scripts."
 fi
 
 echo "🏁 Your system is ready for use."
