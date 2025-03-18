@@ -98,7 +98,7 @@ create_symlink "$(pwd)/.tmux.conf" ~/.tmux.conf
 # 3. Kitty
 echo "* Setting up kitty..."
 create_symlink "$(pwd)/kitty.conf" ~/.config/kitty/kitty.conf
-create_symlink "$(pwd)/scripts/kitty/tmux-attach.sh" ~/.config/kitty/tmux-attach.sh
+create_symlink "$(pwd)/scripts/tmux/tmux-attach.sh" ~/.config/kitty/tmux-attach.sh
 
 # 4. Zathura
 echo "* Setting up zathura..."
