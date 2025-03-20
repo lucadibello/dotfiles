@@ -96,7 +96,6 @@ create_symlink "$(pwd)/.tmux.conf" "$HOME/.tmux.conf"
 # 3. Kitty
 echo "* Setting up kitty..."
 create_symlink "$(pwd)/kitty.conf" "$HOME/.config/kitty/kitty.conf"
-create_symlink "$(pwd)/scripts/tmux/tmux-attach.sh" "$HOME/.config/kitty/tmux-attach.sh"
 
 # 4. Zathura
 echo "* Setting up zathura..."
@@ -117,6 +116,7 @@ create_symlink "$(pwd)/bordersrc" "$HOME/.config/borders/bordersrc"
 # 8. Ghostty
 echo "* Setting up Ghostty..."
 create_symlink "$(pwd)/ghostty.config" "$HOME/.config/ghostty/config"
+create_symlink "$(pwd)/scripts/tmux/tmux-attach.sh" "$HOME/.config/ghostty/tmux-attach.sh"
 
 # Execute all scripts in the post-scripts directory
 echo "🏃 Running post-scripts..."
