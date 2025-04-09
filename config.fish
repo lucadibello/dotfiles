@@ -51,3 +51,8 @@ starship init fish | source
 zoxide init fish | source
 
 fish_add_path -a /Users/lucadibello/.foundry/bin
+
+# Change welcome message
+function fish_greeting
+    echo "🚀 another day, another terminal"
+end
