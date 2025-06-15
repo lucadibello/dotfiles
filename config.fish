@@ -50,7 +50,8 @@ starship init fish | source
 # Zoxide setup (install with fisher: fisher install ajeetdsouza/zoxide)
 zoxide init fish | source
 
-fish_add_path -a /Users/lucadibello/.foundry/bin
+# Start Atuin
+atuin init fish | source
 
 # Change welcome message
 function fish_greeting

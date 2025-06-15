@@ -193,4 +193,3 @@ shift-down = ['volume set 0', 'mode main']
 [[on-window-detected]]
 if.window-title-regex-substring = "Orion Preview"
 run = ["move-node-to-workspace 2"]
-
