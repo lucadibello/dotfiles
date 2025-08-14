@@ -189,7 +189,10 @@ down = 'volume down'
 up = 'volume up'
 shift-down = ['volume set 0', 'mode main']
 
-# Fix Orion
 [[on-window-detected]]
-if.window-title-regex-substring = "Orion Preview"
+if.app-id = 'com.apple.music'
+run = 'move-node-to-workspace M'
+
+[[on-window-detected]]
+if.window-title-regex-substring = "Notion"
 run = ["move-node-to-workspace 2"]
