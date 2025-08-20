@@ -67,20 +67,19 @@ alt-shift-l = 'move right'
 alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-# Reduced number of workspaces on the primary display
+# Define available workspaces
+## Main monitor (general purpose)
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
+## Second monitor (general purpose)
 alt-4 = 'workspace 4'
 alt-5 = 'workspace 5'
 alt-6 = 'workspace 6'
-alt-7 = 'workspace 7'
-alt-8 = 'workspace 8'
-alt-9 = 'workspace 9'
 
 # special workspaces
 alt-b = 'workspace B' # browser
+alt-c = 'workspace C' # chatgpt
 alt-s = 'workspace S' # social (whatsapp)
 alt-m = 'workspace M' # music
 alt-n = 'workspace N' # notion
@@ -98,6 +97,7 @@ alt-shift-5 = 'move-node-to-workspace 5'
 alt-shift-6 = 'move-node-to-workspace 6'
 
 alt-shift-b = 'move-node-to-workspace B' # browser
+alt-shift-c = 'move-node-to-workspace C' # chatgpt
 alt-shift-s = 'move-node-to-workspace S' # social (whatsapp)
 alt-shift-m = 'move-node-to-workspace M' # music
 alt-shift-n = 'move-node-to-workspace N' # notion
@@ -191,6 +191,11 @@ run = 'move-node-to-workspace B'
 [[on-window-detected]]
 if.app-id = 'app.zen-browser.zen' # Zen
 run = 'move-node-to-workspace B'
+
+# ---------- ChatGPT → workspace C ----------
+[[on-window-detected]]
+if.app-id = 'com.openai.chat'    # ChatGPT
+run = 'move-node-to-workspace C'
 
 # ---------- Social → workspace S ----------
 [[on-window-detected]]
