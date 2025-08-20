@@ -189,10 +189,18 @@ down = 'volume down'
 up = 'volume up'
 shift-down = ['volume set 0', 'mode main']
 
+# fixed workspace for Music
 [[on-window-detected]]
 if.app-id = 'com.apple.music'
-run = 'move-node-to-workspace M'
+run = 'move-node-to-workspace 9'
 
+# fixed workspace for Notion
 [[on-window-detected]]
 if.window-title-regex-substring = "Notion"
 run = ["move-node-to-workspace 2"]
+
+# fix ghostty terminal tabs
+[[on-window-detected]]
+if.app-id = "com.mitchellh.ghostty"
+run = ["layout tiling"]
+
