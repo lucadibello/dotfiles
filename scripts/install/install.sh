@@ -1,8 +1,18 @@
 #!/usr/bin/env bash
 
-# Useful paths
-PRE_SCRIPTS_DIR="./scripts/install/pre"
-POST_SCRIPTS_DIR="./scripts/install/post"
+set -o errexit
+set -o pipefail
+set -o nounset
+
+# Resolve repo root regardless of where this script is called from
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+
+# Useful paths (absolute)
+PRE_SCRIPTS_DIR="$REPO_ROOT/scripts/install/pre"
+POST_SCRIPTS_DIR="$REPO_ROOT/scripts/install/post"
+
+OS_NAME="$(uname -s)"
 
 run_script() {
   local script="$1"
@@ -84,44 +94,40 @@ fi
 echo "🏁 Done. Your system is ready for setup."
 echo "📦 Moving dotfiles to the respective directories..."
 
-# 1. Fish
 echo "* Setting up fish..."
-create_symlink "$(pwd)/config.fish" "$HOME/.config/fish/config.fish"
+create_symlink "$REPO_ROOT/config.fish" "$HOME/.config/fish/config.fish"
 
-# 2. TMUX
 echo "* Setting up tmux..."
 mkdir -p "$HOME/.config/tmux"
-create_symlink "$(pwd)/.tmux.conf" "$HOME/.tmux.conf"
+if [ "$OS_NAME" = "Linux" ] && [ -f "$REPO_ROOT/.tmux.linux.conf" ]; then
+  create_symlink "$REPO_ROOT/.tmux.linux.conf" "$HOME/.tmux.conf"
+else
+  create_symlink "$REPO_ROOT/.tmux.conf" "$HOME/.tmux.conf"
+fi
 
-# 3. Kitty
 echo "* Setting up kitty..."
-create_symlink "$(pwd)/kitty.conf" "$HOME/.config/kitty/kitty.conf"
+create_symlink "$REPO_ROOT/kitty.conf" "$HOME/.config/kitty/kitty.conf"
 
-# 4. Zathura
 echo "* Setting up zathura..."
-create_symlink "$(pwd)/zathurarc" "$HOME/.config/zathura/zathurarc"
+create_symlink "$REPO_ROOT/zathurarc" "$HOME/.config/zathura/zathurarc"
 
-# 5. Starship
 echo "* Setting up starship..."
-create_symlink "$(pwd)/starship.toml" "$HOME/.config/starship.toml"
+create_symlink "$REPO_ROOT/starship.toml" "$HOME/.config/starship.toml"
 
-# 6. AeroSpace
 echo "* Setting up aero-space..."
-create_symlink "$(pwd)/.aerospace.toml" "$HOME/.aerospace.toml"
+create_symlink "$REPO_ROOT/.aerospace.toml" "$HOME/.aerospace.toml"
 
-# 7. Bordersrc
 echo "* Setting up bordersrc..."
-create_symlink "$(pwd)/bordersrc" "$HOME/.config/borders/bordersrc"
+create_symlink "$REPO_ROOT/bordersrc" "$HOME/.config/borders/bordersrc"
 
-# 8. Ghostty
 echo "* Setting up Ghostty..."
-create_symlink "$(pwd)/ghostty.config" "$HOME/.config/ghostty/config"
-create_symlink "$(pwd)/scripts/tmux/tmux-attach.sh" "$HOME/.config/ghostty/tmux-attach.sh"
+create_symlink "$REPO_ROOT/ghostty.config" "$HOME/.config/ghostty/config"
+create_symlink "$REPO_ROOT/scripts/tmux/tmux-attach.sh" "$HOME/.config/ghostty/tmux-attach.sh"
 
 # Execute all scripts in the post-scripts directory
 echo "🏃 Running post-scripts..."
 if [ -d "$POST_SCRIPTS_DIR" ] && [ -n "$(ls -A "$POST_SCRIPTS_DIR" 2>/dev/null)" ]; then
-  for script in "$POST_SCRIPTS_DIR"/*; do
+  for script in "$POST_SCRIPTS_DIR"/*.sh; do
     run_script "$script"
   done
 else
