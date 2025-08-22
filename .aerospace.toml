@@ -304,3 +304,7 @@ run = 'move-node-to-workspace U'
 [[on-window-detected]]
 if.app-id = 'com.apple.systempreferences' # System Settings
 run = 'move-node-to-workspace U'
+
+[[on-window-detected]]
+if.app-id = 'com.docker.docker'  # Docker
+run = 'move-node-to-workspace U'
