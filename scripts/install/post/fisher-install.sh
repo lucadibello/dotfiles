@@ -24,6 +24,7 @@ fish -c "tide configure --auto --style=Lean --prompt_colors='16 colors' --show_t
 fish -c "fisher install jorgebucaran/autopair.fish"
 fish -c "fisher install franciscolourenco/done"
 fish -c "fisher install PatrickF1/fzf.fish"
+fish -c "fisher install jhillyerd/plugin-git"
 
 # (Dependencies for fzf.fish: fd, bat)
 if command -v brew &>/dev/null; then
