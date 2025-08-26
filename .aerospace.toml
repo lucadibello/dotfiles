@@ -86,6 +86,7 @@ alt-n = 'workspace N' # notion
 alt-t = 'workspace T' # terminal
 alt-w = 'workspace W' # work
 alt-u = 'workspace U' # utility
+alt-g = 'workspace G' # gaming
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 # Corresponding changes for moving windows to these workspaces
@@ -103,7 +104,8 @@ alt-shift-m = 'move-node-to-workspace M' # music
 alt-shift-n = 'move-node-to-workspace N' # notion
 alt-shift-t = 'move-node-to-workspace T' # terminal
 alt-shift-w = 'move-node-to-workspace W' # work
-alt-shift-u = 'move-node-to-workspace U' # finder
+alt-shift-u = 'move-node-to-workspace U' # utility
+alt-shift-g = 'move-node-to-workspace G' # gaming
 
 # move workspaces around (same monitor / multiple monitors)
 alt-tab = 'workspace-back-and-forth'
