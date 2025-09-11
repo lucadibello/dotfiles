@@ -103,6 +103,8 @@ if [ "$OS_NAME" = "Linux" ] && [ -f "$REPO_ROOT/.tmux.linux.conf" ]; then
   create_symlink "$REPO_ROOT/.tmux.linux.conf" "$HOME/.tmux.conf"
 else
   create_symlink "$REPO_ROOT/.tmux.conf" "$HOME/.tmux.conf"
+  # this needed for tmux inside dockerized linux containers
+  create_symlink "$REPO_ROOT/.tmux.linux.conf" "$HOME/.tmux.linux.conf"
 fi
 
 echo "* Setting up kitty..."
