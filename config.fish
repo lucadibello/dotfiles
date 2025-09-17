@@ -35,10 +35,13 @@ eval /opt/homebrew/Caskroom/miniconda/base/bin/conda "shell.fish" hook $argv | s
 # PATH setup
 # Golang
 set -x PATH $PATH (go env GOPATH)/bin
-# OpenJDK
+# jenv (java version manager)
 set -x PATH /opt/homebrew/opt/openjdk/bin $PATH
 # LLVM
 set -x PATH /opt/homebrew/opt/llvm/bin $PATH
+
+# openjdk (disabled, using jenv)
+# set -x PATH /opt/homebrew/opt/openjdk/bin $PATH
 
 # Constants
 set -x CXX clang++
@@ -52,6 +55,9 @@ zoxide init fish | source
 
 # Start Atuin
 atuin init fish | source
+
+# Start jenv
+status --is-interactive; and jenv init - | source
 
 # Change welcome message
 function fish_greeting
