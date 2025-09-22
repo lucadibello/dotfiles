@@ -105,6 +105,7 @@ else
   create_symlink "$REPO_ROOT/.tmux.conf" "$HOME/.tmux.conf"
   # this needed for tmux inside dockerized linux containers
   create_symlink "$REPO_ROOT/.tmux.linux.conf" "$HOME/.tmux.linux.conf"
+  create_symlink "$REPO_ROOT/.tmux.alpine.conf" "$HOME/.tmux.alpine.conf"
 fi
 
 echo "* Setting up kitty..."
