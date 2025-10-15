@@ -88,6 +88,9 @@ alt-w = 'workspace W' # work
 alt-u = 'workspace U' # utility
 alt-g = 'workspace G' # gaming
 
+# additonal workspaces
+alt-q = 'workspace Q' # random
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 # Corresponding changes for moving windows to these workspaces
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -106,6 +109,7 @@ alt-shift-t = 'move-node-to-workspace T' # terminal
 alt-shift-w = 'move-node-to-workspace W' # work
 alt-shift-u = 'move-node-to-workspace U' # utility
 alt-shift-g = 'move-node-to-workspace G' # gaming
+alt-shift-q = 'move-node-to-workspace Q'
 
 # move workspaces around (same monitor / multiple monitors)
 alt-tab = 'workspace-back-and-forth'
