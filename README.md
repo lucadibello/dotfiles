@@ -1,6 +1,6 @@
 # Luca's dotfiles
 
-Personal dotfiles and setup scripts for my environment. The installer links configs into your home directory and optionally installs a few tools and Fish plugins.
+Personal dotfiles and setup scripts for my environment. The installer bootstraps prerequisites and lets chezmoi apply the configs to your home directory alongside optional tooling (oh-my-zsh, tmux helpers, etc.).
 
 ## Requirements
 
@@ -26,46 +26,49 @@ make install
 
 What happens:
 
-- Runs pre-scripts to ensure required tools are present via Homebrew (Fish shell, Fisher, Tmuxinator).
-- Creates symlinks for configs below (prompts before replacing existing real files; replaces existing symlinks automatically).
-- Runs post-scripts (Fish plugin installation/config, optional default shell change on macOS, reload tmux config).
+- Runs pre-scripts to ensure required tools are present via Homebrew (chezmoi, zsh, git, Tmuxinator).
+- Uses chezmoi (with this repo as the source state) to write/update dotfiles in your home directory.
+- Runs post-scripts (oh-my-zsh install, optional default shell change on macOS, reload tmux config).
+
+Use standard chezmoi commands for day-to-day management, for example:
+
+```bash
+chezmoi --source="$(pwd)" --destination="$HOME" diff
+chezmoi --source="$(pwd)" --destination="$HOME" apply
+```
 
 ## What gets linked
 
-- Fish: `config.fish` → `~/.config/fish/config.fish`
+- Zsh: `dot_zshrc` → `~/.zshrc`
+- Fish (optional): `dot_config/fish/config.fish` → `~/.config/fish/config.fish`
 - Tmux (auto-selects per OS):
-  - macOS: `.tmux.conf` → `~/.tmux.conf`
-  - Linux: `.tmux.linux.conf` → `~/.tmux.conf`
-- Kitty: `kitty.conf` → `~/.config/kitty/kitty.conf`
-- Zathura: `zathurarc` → `~/.config/zathura/zathurarc`
-- Starship: `starship.toml` → `~/.config/starship.toml`
-- AeroSpace: `.aerospace.toml` → `~/.aerospace.toml`
-- Borders: `bordersrc` → `~/.config/borders/bordersrc`
-- Ghostty: `ghostty.config` → `~/.config/ghostty/config`
-- Ghostty helper: `scripts/tmux/tmux-attach.sh` → `~/.config/ghostty/tmux-attach.sh`
+  - macOS: `dot_tmux.conf` → `~/.tmux.conf`
+  - Linux: `dot_tmux.linux.conf` → `~/.tmux.conf`
+- Kitty: `dot_config/kitty/kitty.conf` → `~/.config/kitty/kitty.conf`
+- Zathura: `dot_config/zathura/zathurarc` → `~/.config/zathura/zathurarc`
+- Starship: `dot_config/starship.toml` → `~/.config/starship.toml`
+- AeroSpace: `dot_aerospace.toml` → `~/.aerospace.toml`
+- Borders: `dot_config/borders/bordersrc` → `~/.config/borders/bordersrc`
+- Ghostty: `dot_config/ghostty/config` → `~/.config/ghostty/config`
+- Ghostty helper: `dot_config/ghostty/tmux-attach.sh` → `~/.config/ghostty/tmux-attach.sh`
 
 ## Notes and behavior
 
 - Homebrew is required for automated installs in pre/post scripts. If missing, scripts will print a helpful message and skip where possible.
-- The installer is idempotent; re-running updates symlinks safely.
-- On macOS, Fish can be set as your default login shell (`/opt/homebrew/bin/fish`) with sudo. If Fish isn’t in `/etc/shells`, it will be appended.
+- The installer is idempotent; rerunning `make install` just feeds the repo back through `chezmoi apply`.
+- On macOS, zsh (`$(command -v zsh)`) can be set as your default login shell with sudo. If it isn’t in `/etc/shells`, the installer appends it automatically.
 - Tmux reload is best-effort; if tmux isn’t running, the step is skipped.
 
 ## Troubleshooting
 
 - “Homebrew not found”: install from <https://brew.sh> and re-run `make install`.
-- Fish plugins didn’t install: ensure `fish` and `fisher` are available (`brew install fish fisher`) and re-run.
+- “chezmoi not found”: install via Homebrew (`brew install chezmoi`) or re-run the installer to auto-install it.
+- oh-my-zsh didn’t install: ensure `git` is available (`brew install git`) and re-run.
 - Kitty/Ghostty/Zathura not picking up config: make sure the apps are installed and look in the linked paths above.
 
 ## Uninstall / revert
 
-This repo uses symlinks. To revert, remove the symlinks listed above and restore/replace your own configs. Example:
-
-```bash
-rm -f ~/.tmux.conf ~/.config/fish/config.fish ~/.config/kitty/kitty.conf \
-      ~/.config/zathura/zathurarc ~/.config/starship.toml ~/.aerospace.toml \
-      ~/.config/borders/bordersrc ~/.config/ghostty/config ~/.config/ghostty/tmux-attach.sh
-```
+This repo is applied through chezmoi. To revert, use `chezmoi apply --include=... --dry-run` to preview changes or `chezmoi destroy` to remove managed files.
 
 ## License
 
