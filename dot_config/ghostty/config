@@ -27,7 +27,7 @@ font-feature = ss09
 font-feature = liga
 
 # Set shell integration features
-shell-integration = fish
+shell-integration = zsh
 shell-integration-features = cursor
 shell-integration-features = title
 shell-integration-features = sudo
