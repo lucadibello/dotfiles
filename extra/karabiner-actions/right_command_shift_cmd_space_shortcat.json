@@ -1,0 +1,25 @@
+{
+  "description": "Shortcat hyperkey - Map right command to Shift+Command+Space",
+  "manipulators": [
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "right_command",
+        "modifiers": {
+          "optional": [
+            "any"
+          ]
+        }
+      },
+      "to": [
+        {
+          "key_code": "spacebar",
+          "modifiers": [
+            "left_shift",
+            "left_command"
+          ]
+        }
+      ]
+    }
+  ]
+}
