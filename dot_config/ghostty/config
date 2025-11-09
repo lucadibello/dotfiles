@@ -6,6 +6,7 @@ clipboard-write = allow
 font-size = 20
 font-family = MonaspiceNe Nerd Font Mono
 theme = Github Dark
+background-opacity = 0.95
 
 # setup tmux entrypoint
 command = /opt/homebrew/bin/tmux new-session -A -s core
@@ -31,6 +32,9 @@ shell-integration = zsh
 shell-integration-features = cursor
 shell-integration-features = title
 shell-integration-features = sudo
+
+# Set shaders
+custom-shader = ~/.config/ghostty/shaders/cursor_blaze.glsl
 
 # Keybind to reload terminal configuration
 # keybind = ctrl+b>r=reload_config
