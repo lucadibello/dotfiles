@@ -6,6 +6,7 @@ set -o nounset
 
 VENV_DIR="${HOME}/.virtualenvs/neovim"
 VENV_PYTHON="${VENV_DIR}/bin/python"
+VENV_PIP="${VENV_DIR}/bin/pip3"
 PYTHON_BIN="${PYTHON_BIN:-python3}"
 NPM_BIN="${NPM_BIN:-npm}"
 
@@ -24,7 +25,10 @@ fi
 
 echo "Ensuring pynvim + jupyter dependencies (for molten.nvim) is installed in ${VENV_DIR}..."
 "${VENV_PYTHON}" -m pip install --upgrade pip >/dev/null 2>&1 || true
-"${VENV_PYTHON}" -m pip install --upgrade pynvim jupyter_client cairosvg plotly kaleido pnglatex pyperclip
+"${VENV_PIP}" install --upgrade pynvim jupyter cairosvg plotly kaleido pnglatex pyperclip
+
+echo "Installing additional general purpose Python packages in ${VENV_DIR}..."
+${VENV_PIP} install --upgrade pandas numpy matplotlib seaborn scipy
 
 if ! command -v "${NPM_BIN}" >/dev/null 2>&1; then
   echo "npm is required to install the Neovim Node.js client. Install npm and re-run the installer."
