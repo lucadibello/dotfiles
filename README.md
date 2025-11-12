@@ -28,7 +28,7 @@ What happens:
 
 - Runs pre-scripts to ensure required tools are present via Homebrew (chezmoi, zsh, git, Tmuxinator).
 - Uses chezmoi (with this repo as the source state) to write/update dotfiles in your home directory.
-- Runs post-scripts (oh-my-zsh install, optional default shell change on macOS, reload tmux config).
+- Runs post-scripts (oh-my-zsh install, optional default shell change on macOS, reload tmux config, Neovim Python/Node clients).
 
 Use standard chezmoi commands for day-to-day management, for example:
 
