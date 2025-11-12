@@ -22,9 +22,9 @@ else
   echo "Neovim virtualenv already exists at ${VENV_DIR}; skipping creation."
 fi
 
-echo "Ensuring pynvim + jupyter dependencies is installed in ${VENV_DIR}..."
+echo "Ensuring pynvim + jupyter dependencies (for molten.nvim) is installed in ${VENV_DIR}..."
 "${VENV_PYTHON}" -m pip install --upgrade pip >/dev/null 2>&1 || true
-"${VENV_PYTHON}" -m pip install --upgrade pynvim jupyter
+"${VENV_PYTHON}" -m pip install --upgrade pynvim jupyter_client cairosvg plotly kaleido pnglatex pyperclip
 
 if ! command -v "${NPM_BIN}" >/dev/null 2>&1; then
   echo "npm is required to install the Neovim Node.js client. Install npm and re-run the installer."
