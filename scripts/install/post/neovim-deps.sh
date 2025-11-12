@@ -25,7 +25,7 @@ fi
 
 echo "Ensuring pynvim + jupyter dependencies (for molten.nvim) is installed in ${VENV_DIR}..."
 "${VENV_PYTHON}" -m pip install --upgrade pip >/dev/null 2>&1 || true
-"${VENV_PIP}" install --upgrade pynvim jupyter cairosvg plotly kaleido pnglatex pyperclip
+"${VENV_PIP}" install --upgrade pynvim jupytext jupyter cairosvg plotly kaleido pnglatex pyperclip
 
 echo "Installing additional general purpose Python packages in ${VENV_DIR}..."
 ${VENV_PIP} install --upgrade pandas numpy matplotlib seaborn scipy
