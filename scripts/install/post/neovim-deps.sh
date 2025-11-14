@@ -27,8 +27,11 @@ echo "Ensuring pynvim + jupyter dependencies (for molten.nvim) is installed in $
 "${VENV_PYTHON}" -m pip install --upgrade pip >/dev/null 2>&1 || true
 "${VENV_PIP}" install --upgrade pynvim jupytext jupyter cairosvg plotly kaleido pnglatex pyperclip
 
+echo "Ensuring markdown-renderer dependencies are installed in ${VENV_DIR}..."
+"${VENV_PIP}" install --upgrade pylatexenc
+
 echo "Installing additional general purpose Python packages in ${VENV_DIR}..."
-${VENV_PIP} install --upgrade pandas numpy matplotlib seaborn scipy
+"${VENV_PIP}" install --upgrade pandas numpy matplotlib seaborn scipy
 
 if ! command -v "${NPM_BIN}" >/dev/null 2>&1; then
   echo "npm is required to install the Neovim Node.js client. Install npm and re-run the installer."
@@ -41,5 +44,8 @@ else
   echo "Installing neovim npm package globally..."
   "${NPM_BIN}" install -g neovim
 fi
+
+echo "Installing Prettier globally..."
+"${NPM_BIN}" install -g prettier
 
 echo "Neovim Python and Node.js dependencies are ready."
