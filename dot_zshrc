@@ -89,6 +89,13 @@ if command -v fzf >/dev/null 2>&1; then
   bindkey '^E' fzf-cd-widget
 fi
 
+# Custom keybindings/aliases
+KEYBINDINGS_FILE="${HOME}/.config/zsh/keybindings.sh"
+if [[ -r "${KEYBINDINGS_FILE}" ]]; then
+  source "${KEYBINDINGS_FILE}"
+fi
+unset KEYBINDINGS_FILE
+
 # NOTE: loaded after zsh to override Ctrl+R keymap
 if command -v atuin >/dev/null 2>&1; then
   eval "$(atuin init zsh 2>/dev/null)"
